@@ -4,6 +4,7 @@ export const PostListContext = createContext({
   postList: [],
   addPost: () => {},
   deletePost: () => {},
+  addInitialPostList: () => {},
 });
 
 const postListReducer = (currPostList, action) => {
@@ -12,6 +13,8 @@ const postListReducer = (currPostList, action) => {
     newPostList = newPostList.filter(
       (post) => post.id !== action.payload.postId
     );
+  } else if (action.type === "ADD_POST_FROM_SERVER") {
+    newPostList = action.payload.posts;
   } else if (action.type === "ADD_POST") {
     newPostList = [action.payload.postData, ...currPostList];
     console.log(newPostList);
@@ -20,10 +23,16 @@ const postListReducer = (currPostList, action) => {
 };
 
 const PostListProvider = ({ children }) => {
-  const [postList, dispatchPostList] = useReducer(
-    postListReducer,
-    DEFAULT_POST_LIST
-  );
+  const [postList, dispatchPostList] = useReducer(postListReducer, []);
+
+  const addInitialPostList = (posts) => {
+    dispatchPostList({
+      type: "ADD_POST_FROM_SERVER",
+      payload: {
+        posts,
+      },
+    });
+  };
 
   const addPost = (postData) => {
     const addPostAction = {
@@ -44,29 +53,12 @@ const PostListProvider = ({ children }) => {
   };
 
   return (
-    <PostListContext.Provider value={{ postList, addPost, deletePost }}>
+    <PostListContext.Provider
+      value={{ postList, addPost, deletePost, addInitialPostList }}
+    >
       {children}
     </PostListContext.Provider>
   );
 };
-
-const DEFAULT_POST_LIST = [
-  {
-    id: "1",
-    title: "Lorem ipsum dolor sit amet.",
-    body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, odio.",
-    reactions: 15,
-    userId: "user-9",
-    tags: ["Graduation", "Unbeliveble"],
-  },
-  {
-    id: "2",
-    title: "Lorem ipsum dolor sit amet.",
-    body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, odio.",
-    reactions: 15,
-    userId: "user-5",
-    tags: ["Graduation", "Unbeliveble"],
-  },
-];
 
 export default PostListProvider;
