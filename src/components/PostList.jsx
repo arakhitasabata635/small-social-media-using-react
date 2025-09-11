@@ -7,25 +7,30 @@ import LoadingSpiner from "./LoadingSpiner";
 const PostList = () => {
   const { postList, addInitialPostList } = useContext(PostListContext);
 
-  const [featching, setFatching]= useState(false)
+  const [featching, setFatching] = useState(false);
 
   useEffect(() => {
-    setFatching(true)
-    fetch("https://dummyjson.com/posts")
+    setFatching(true);
+    const controler = new AbortController();
+    const signal = controler.signal;
+    fetch("https://dummyjson.com/posts" , {signal})
       .then((res) => res.json())
       .then((data) => {
         addInitialPostList(data.posts);
-        setFatching(false)
+        setFatching(false);
       });
+
+    return () => {
+      controler.abort();
+      console.log("aborted");
+    };
   }, []);
 
   return (
     <>
-    {featching && <LoadingSpiner/>}
+      {featching && <LoadingSpiner />}
       {!featching && postList.length === 0 && <WelcomeMessage></WelcomeMessage>}
-      {!featching && postList.map((post) => (
-        <Post key={post.id} post={post} />
-      ))}
+      {!featching && postList.map((post) => <Post key={post.id} post={post} />)}
     </>
   );
 };
