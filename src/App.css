@@ -18,6 +18,8 @@
 
 .create-post{
   margin: 20px;
+  width:50%;
+  min-width: 400px;
 }
 .Welcome-message{
   margin-block: 100px;

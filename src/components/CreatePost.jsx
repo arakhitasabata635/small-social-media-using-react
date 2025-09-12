@@ -6,25 +6,36 @@ const CreatePost = () => {
   const userIdRef = useRef("");
   const postTitleRef = useRef("");
   const postBodyRef = useRef("");
-  const reactionsRef = useRef("");
+  const likesRef = useRef("");
+  const dislikesRef = useRef("");
   const tagsRef = useRef("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const id = new Date();
     const userId = userIdRef.current.value;
     const title = postTitleRef.current.value;
     const body = postBodyRef.current.value;
-    const reactions = reactionsRef.current.value;
+    const reactions = {
+      likes: likesRef.current.value,
+      dislikes: dislikesRef.current.value,
+    };
     const tags = tagsRef.current.value.split(" ");
-    const postData = { id, title, body, reactions, userId, tags };
+
+    fetch("https://dummyjson.com/posts/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, body, reactions, userId, tags }),
+    })
+      .then((res) => res.json())
+      .then((postData)=> addPost( {postData} ));
+
     userIdRef.current.value = "";
     postTitleRef.current.value = "";
     postBodyRef.current.value = "";
-    reactionsRef.current.value = "";
+    likesRef.current.value = "";
+    dislikesRef.current.value = "";
     tagsRef.current.value = "";
-    addPost({ postData });
   };
 
   return (
@@ -62,15 +73,26 @@ const CreatePost = () => {
         id="body"
         placeholder="Tell us more about it"
       />
-      <label htmlFor="reactions" className="form-label">
-        Number of reactions
+      <p> Number of reactions ?</p>
+      <label htmlFor="likes" className="form-label">
+        people Likes :
       </label>
       <input
         type="text"
-        ref={reactionsRef}
+        ref={likesRef}
         className="form-control"
-        id="reactions"
-        placeholder="How many people reacted to this post"
+        id="likes"
+        placeholder="How many people Likes to this post"
+      />
+      <label htmlFor="dislikes" className="form-label">
+        people Dislikes :
+      </label>
+      <input
+        type="text"
+        ref={dislikesRef}
+        className="form-control"
+        id="dislikes"
+        placeholder="How many people Dislikes the  post"
       />
       <label htmlFor="tags" className="form-label">
         Enter your hashtags here
