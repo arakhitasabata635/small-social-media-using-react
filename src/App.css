@@ -1,29 +1,42 @@
-.appContainer{
+.appContainer {
   display: flex;
 }
 
-.containt{
-  width: 100% ;
+.containt {
+  width: 100%;
 }
-.sidebar{
-  min-height: 800px;
+
+.sidebar {
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
-.cards{
-  margin: 20px 50px;
-  width: 30rem;
+
+.cards {
+  margin: 20px 10px;
+  max-width: 30rem;
 }
-.tags{
+
+.tags {
   margin-left: 3px;
 }
 
-.create-post{
+.create-post {
   margin: 20px;
-  width:50%;
-  min-width: 400px;
+  width: 50%;
+  min-width: 280px;
 }
-.Welcome-message{
+
+.Welcome-message {
   margin-block: 100px;
 }
-.spinner{
+
+.spinner {
   margin: 10% 0;
+}
+
+.delete {
+  left: 95%;
+  cursor: pointer;
 }
