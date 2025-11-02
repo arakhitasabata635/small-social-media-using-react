@@ -1,12 +1,51 @@
-# React + Vite
+# Small Social Media App 🌐💬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple social media-style web application built using React where users can create posts and interact with the UI dynamically. This project focuses on React fundamentals such as component structure, props, state management, reusable UI components and using fake apis.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
+- 📝 Create new posts
+- 🗑️ Delete posts
+- 🎨 Responsive and stylish UI
+- ⚛️ Fully built using React components
+- ⚡ Fast development environment using Vite
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+- **React.js**
+- **JavaScript (ES6+)**
+- **bootstrap**
+- **Vite**
+
+---
+
+## 📸 Screenshots
+
+> Add images inside `screenshots` folder and replace the image paths below
+
+### ✅ Home Feed UI
+![Screenshot-1](./public/home-feed.png)
+
+### 📝 Add Post Section
+![Screenshot-2](./public/add-post.png)
+
+---
+
+## 🔧 How to Run Locally
+- git clone https://github.com/arakhitasabata635/small-social-media-using-react
+- cd small-social-media-using-react
+- npm install
+- npm run dev
+
+## 🧠 What I Learned
+- Component-based React architecture
+- Managing dynamic UI with state
+- Real-world CRUD UI patterns
+- Working with Vite project setup
+- working with rest apis
+
+## 🙌 Author
+**Arakhita Sabata**  
+If you like this project, please ⭐ the repository!
